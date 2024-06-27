@@ -11,7 +11,7 @@
 #
 
 # Modify default IP
-#sed -i 's/192.168.1.1/192.168.50.5/g' package/base-files/files/bin/config_generate
+sed -i 's/192.168.1.1/192.168.60.1/g' package/base-files/files/bin/config_generate
 
 kernel_ver=$(grep -Po '^KERNEL_PATCHVER=\K\S+' target/linux/x86/Makefile)
 # 519 问题很多，回退到 515
@@ -31,17 +31,17 @@ fi
 mkdir -p files
 # 初次开机设置脚本
 mkdir -p files/etc/uci-defaults/
-cp ${GITHUB_WORKSPACE}/scripts/uci-defaults/* files/etc/uci-defaults/
-chmod a+x files/etc/uci-defaults/*
+#cp ${GITHUB_WORKSPACE}/scripts/uci-defaults/* files/etc/uci-defaults/
+#chmod a+x files/etc/uci-defaults/*
 
 # 预处理下载相关文件，保证打包固件不用单独下载
-for sh_file in `ls ${GITHUB_WORKSPACE}/scripts/files/*.sh`;do
-    source $sh_file
-done
+#for sh_file in `ls ${GITHUB_WORKSPACE}/scripts/files/*.sh`;do
+#    source $sh_file
+#done
 
-chmod a+x ${GITHUB_WORKSPACE}/build/scripts/*.sh
+#chmod a+x ${GITHUB_WORKSPACE}/build/scripts/*.sh
 # 放入升级脚本
-\cp -a ${GITHUB_WORKSPACE}/build/scripts/update.sh files/
+#\cp -a ${GITHUB_WORKSPACE}/build/scripts/update.sh files/
 
 
 # ---------- end -----------
